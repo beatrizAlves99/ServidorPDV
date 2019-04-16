@@ -11,9 +11,64 @@ exports.criarProduto = (req,res,next)=>{
 };
 
 exports.listarProduto = (req,res,next)=>{
-    Venda.findAll({attributes: ["id", "nome"]}).then((produtos)=>{
+    Produto.findAll({attributes: ["id", "nome"]}).then((produtos)=>{
         res.status(status.OK).send(produtos);
     }).catch((erro)=>{
         next(erro);
     });
+};
+
+
+
+exports.buscarProduto = (req,res,next)=>{
+    let id = parseInt(req.params.id);
+    Produto.findById(id).then((produto)=>{
+        if (produto){
+            res.status(Status.OK).send(produto);
+        }else{
+            res.status(Status.NOT_FOUND).send();     
+        }
+    }).catch((erro)=>{
+        next(erro);
+    });
+};
+
+exports.excluirProduto = (req,res,next) => {
+    let id = parseInt(req.params.id);
+    Produto.findById(id).then((produto)=>{        
+        if (produto){
+            Produto.destroy({ where: {id : id}}).then(()=>{
+                res.status(Status.OK).send();
+            }).catch((erro)=>{
+                next(erro);
+            });
+        }else{
+            res.status(Status.NOT_FOUND).send();
+        }
+    }).catch((erro)=>{
+        next(erro);
+    });
+};
+
+exports.atualizarProduto = (req,res,next)=>{
+    let id = parseInt(req.params.id);    
+    let produtoBody = req.body;    
+    if (!produtoBody || !id){
+        res.status(Status.NO_CONTENT).send();
+    }else{
+        Produto.findById(id).then((produto)=>{
+            if (produto){
+                Produto.update({nome: produtoBody.nome, status : produtoBody.status, codigo: produtoBody.codigo, 
+                preco: produtoBody.preco, qtdEstoque: produtoBody.qtdEstoque, categoria: produtoBody.categoria},{where : {id : id}}).then(()=>{
+                    res.status(Status.OK).send();
+                }).catch((erro)=>{
+                    next(erro);
+                });
+            }else{
+                res.status(Status.NOT_FOUND).send();
+            }
+        }).catch((erro)=>{
+            next(erro);
+        });
+    }
 };
