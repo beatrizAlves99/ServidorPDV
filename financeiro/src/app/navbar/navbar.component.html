@@ -1,0 +1,20 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">Navbar</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <a routerLink="dashboard" class="nav-item nav-link active" href="#">Dashboard <span class="sr-only">(current)</span></a>
+        <a routerLink="empresas" class="nav-item nav-link">Empresas</a>
+        <a routerLink="contatos" class="nav-item nav-link">Contatos</a>
+        <a routerLink="produtos" class="nav-item nav-link">Produtos</a>
+        <a routerLink="tarefas" class="nav-item nav-link" >Tarefas</a>
+      </div>
+    </div>
+</nav>
+
+<alert type="success">
+    <strong>Well done!</strong> You successfully read this important alert message.
+</alert>
+<router-outlet></router-outlet>
