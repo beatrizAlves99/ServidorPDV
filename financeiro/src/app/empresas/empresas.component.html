@@ -49,10 +49,19 @@
       <form method="POST" #frmEmp="ngForm" (ngSubmit)="criarEmpresa(frmEmp)" >  
        <p>Nome: <input type="text" id="nome" name="nome" [(ngModel)]="empresa.nome" required></p>
        <p>Razão: <input type="text" id="razao" name="razao" [(ngModel)]="empresa.razao" required></p>
-        <p>Site: <input type="text" id="web" name="web" [(ngModel)]="empresa.web" required></p>
+        <p>Site: <input type="text" id="web" name="web" [(ngModel)]="empresa.webSite" required></p>
         
         <button type="submit" [disabled]="frmEmp.invalid" >Salvar</button>
       </form>
+      
+    </div>
+    <div>
+      <form #frmdel="ngForm" (ngSubmit)="deletar(frmdel)">
+        <p>Numero da empresa: <input type="text" id="id" name="id"[(ngModel)]="idEmp.id" required></p>
+        <button type="submit" [disabled]="frmdel.invalid" >enviar</button>
+
+      </form>
+
     </div>
 
     </div>

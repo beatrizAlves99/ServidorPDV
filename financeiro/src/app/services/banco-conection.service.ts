@@ -20,4 +20,8 @@ export class BancoConectionService {
   criarEmpresa(empresa: any) {
     return this.http.post(this.URL_SERVIDOR , empresa);
   }
+
+  deletarEmpresa(idEmp: any) {
+    return this.http.delete(this.URL_SERVIDOR + '/', idEmp);
+  }
 }

@@ -12,11 +12,13 @@ import { BancoConectionService } from './../services/banco-conection.service';
 export class EmpresasComponent implements OnInit {
   empresas: Array<any>;
   empresa: any;
+  idEmp: any;
 
   constructor(private conection: BancoConectionService) { }
 
   ngOnInit() {
     this.empresa = {};
+    this.idEmp = '';
     this.conection.listarEmpresa().subscribe(resposta => this.empresas = resposta);
   }
 
@@ -26,6 +28,14 @@ export class EmpresasComponent implements OnInit {
 
       frmEmp.reset();
     });
+  }
+
+  deletar(frmdel: FormGroup) {
+    this.conection.deletarEmpresa(this.idEmp).subscribe(resposta => {
+      this.idEmp.push(resposta);
+    });
+
+    frmdel.reset();
   }
 
 }
