@@ -46,10 +46,10 @@
       </div>
     </div>
     <div>
-      <form  #frmEmp="ngForm" (onSubmit)="criarEmpresa(frmEmp)" >  
-        <input type="text" id="nome" name="nome" [(ngModel)]="empresa.nome">
-        <input type="text" id="razao" name="razao" [(ngModel)]="empresa.razao">
-        <input type="text" id="web" name="web" [(ngModel)]="empresa.web">
+      <form method="POST" #frmEmp="ngForm" (ngSubmit)="criarEmpresa(frmEmp)" >  
+       <p>Nome: <input type="text" id="nome" name="nome" [(ngModel)]="empresa.nome" required></p>
+       <p>Razão: <input type="text" id="razao" name="razao" [(ngModel)]="empresa.razao" required></p>
+        <p>Site: <input type="text" id="web" name="web" [(ngModel)]="empresa.web" required></p>
         
         <button type="submit" [disabled]="frmEmp.invalid" >Salvar</button>
       </form>

@@ -6,7 +6,7 @@ const status = require("http-status");
 exports.criarTarefa = (req,res,next)=>{
     let tarefa = req.body;
     Tarefa.create(tarefa).then((novoTarefa)=>{
-        res.status(status.create).send();
+        res.status(status.CREATED).send();
     }).catch((erro)=>{
         next(erro);
     });

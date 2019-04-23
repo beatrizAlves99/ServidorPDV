@@ -8,16 +8,16 @@ import { Injectable } from '@angular/core';
 })
 export class BancoConectionService {
 
-  URL_SERVIDOR = 'http://localhost:3000/';
+  URL_SERVIDOR = 'http://localhost:3000/empresas';
 
 
   constructor(private http: HttpClient) { }
 
   listarEmpresa() {
-    return this.http.get<Array<any>>(this.URL_SERVIDOR + 'empresas');
+    return this.http.get<Array<any>>(this.URL_SERVIDOR );
   }
 
   criarEmpresa(empresa: any) {
-    return this.http.post(this.URL_SERVIDOR + 'empresas', empresa);
+    return this.http.post(this.URL_SERVIDOR , empresa);
   }
 }

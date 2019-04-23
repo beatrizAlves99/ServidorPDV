@@ -4,7 +4,7 @@ const status = require("http-status");
 exports.criarFornecedor = (req,res,next)=>{
     let fornecedor = req.body;
     Fornecedor.create(fornecedor).then((novoForn)=>{
-        res.status(status.create).send();
+        res.status(status.CREATED).send();
     }).catch((erro)=>{
         next(erro);
     });

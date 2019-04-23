@@ -6,7 +6,7 @@ const status = require("http-status");
 exports.criarContato = (req,res,next)=>{
     let contato = req.body;
     Contato.create(contato).then((novoContato)=>{
-        res.status(status.create).send();
+        res.status(status.CREATED).send();
     }).catch((erro)=>{
         next(erro);
     });

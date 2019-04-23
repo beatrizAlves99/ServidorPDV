@@ -10,7 +10,7 @@ const Empresa = conSequelize.define('empresa',{
     razao: {type: sequelize.STRING(255), validate:{
         len: [2,255]
     }},
-    webSite: {type: sequelize.STRING(255), allowNull: false, validate:{
+    webSite: {type: sequelize.STRING(255), validate:{
         len:[2,255]
     }},
     docs: {type: sequelize.STRING(255), validate:{

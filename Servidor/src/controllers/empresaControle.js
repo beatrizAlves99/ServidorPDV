@@ -6,7 +6,7 @@ const status = require("http-status");
 exports.criarEmpresa = (req,res,next)=>{
     let empresa = req.body;
     Empresa.create(empresa).then((novoEmpresa)=>{
-        res.status(status.create).send();
+       res.status(status.CREATED).send();
     }).catch((erro)=>{
         next(erro);
     });
@@ -59,8 +59,8 @@ exports.atualizarEmpresa = (req,res,next)=>{
     }else{
         Empresa.findById(id).then((empresa)=>{
             if (empresa){
-                Empresa.update({nome: empresaBody.nome, posicao : empresaBody.posicao, empresa: empresaBody.empresa,
-                email: empresaBody.email, telefone: empresaBody.telefone, categoria: empresaBody.categoria},{where : {id : id}}).then(()=>{
+                Empresa.update({nome: empresaBody.nome, razao : empresaBody.razao, webSite: empresaBody.webSite,
+                    docs: empresaBody.docs},{where : {id : id}}).then(()=>{
                     res.status(Status.OK).send();
                 }).catch((erro)=>{
                     next(erro);

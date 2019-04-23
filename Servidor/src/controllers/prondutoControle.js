@@ -4,7 +4,7 @@ const status = require("http-status");
 exports.criarProduto = (req,res,next)=>{
     let produto = req.body;
     Produto.create(produto).then((novoProduto)=>{
-        res.status(status.create).send();
+        res.status(status.CREATED).send();
     }).catch((erro)=>{
         next(erro);
     });
