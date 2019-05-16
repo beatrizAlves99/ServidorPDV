@@ -41,6 +41,7 @@ exports.buscarUmEmpresa = (req,res,next)=>{
 
 exports.excluirEmpresa = (req,res,next) => {
     let id = req.params.id;
+    console.log(id);
     //let empresab = req.body;
     Empresa.findByPk(id).then((empresa)=>{        
         if (empresa){

@@ -20,7 +20,7 @@ export class EmpresasComponent implements OnInit {
     this.empresa = {};
     this.idEmp = 0;
     this.listarEmpresa();
-    
+
   }
 
   criarEmpresa(frmEmp: FormGroup) {
@@ -32,8 +32,9 @@ export class EmpresasComponent implements OnInit {
   }
 
   deletar(frmdel: FormGroup) {
-    this.conection.deletarEmpresa(this.empresa).subscribe(resposta => {
-      this.empresas.push(resposta);
+    this.conection.deletarEmpresa(this.empresa.id).subscribe(
+      resposta => {
+        this.empresas.push(resposta);
     });
 
     frmdel.reset();
@@ -44,4 +45,3 @@ export class EmpresasComponent implements OnInit {
   }
 
 }
- 
