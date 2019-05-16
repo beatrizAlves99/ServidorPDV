@@ -1,5 +1,5 @@
-const sequelize = require('sequelize');
-const conSequelize = require('../config/banco');
+/*const sequelize = require('sequelize');
+//const conSequelize = require('../../config/banco');
 
 
 const Tarefa = conSequelize.define('tarefa',{
@@ -18,4 +18,4 @@ const Tarefa = conSequelize.define('tarefa',{
     
 },{tableName: 'tarefa'});
 
-module.exports = Tarefa;
+module.exports = Tarefa;*/

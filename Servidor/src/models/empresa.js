@@ -18,9 +18,11 @@ const Empresa = conSequelize.define('empresa',{
     }},
 },{tableName: 'empresa'});
 
-const Contato = require("./contato");
-Empresa.belongsToMany(Contato, {through: 'ContatoEmp'});
-Contato.belongsToMany(Empresa, {through: 'ContatoEmp'});
+Empresa.hasMany(require("./produto")); 
+
+const Fornecedor = require("./fornecedor");
+Empresa.belongsToMany(Fornecedor, {through: 'EmpresaFornecedor'});
+Fornecedor.belongsToMany(Empresa, {through: 'EmpresaFornecedor'});
 
 
 module.exports = Empresa;

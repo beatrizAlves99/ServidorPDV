@@ -18,8 +18,9 @@ export class EmpresasComponent implements OnInit {
 
   ngOnInit() {
     this.empresa = {};
-    this.idEmp = '';
-    this.conection.listarEmpresa().subscribe(resposta => this.empresas = resposta);
+    this.idEmp = 0;
+    this.listarEmpresa();
+    
   }
 
   criarEmpresa(frmEmp: FormGroup) {
@@ -31,11 +32,16 @@ export class EmpresasComponent implements OnInit {
   }
 
   deletar(frmdel: FormGroup) {
-    this.conection.deletarEmpresa(this.idEmp).subscribe(resposta => {
-      this.idEmp.push(resposta);
+    this.conection.deletarEmpresa(this.empresa).subscribe(resposta => {
+      this.empresas.push(resposta);
     });
 
     frmdel.reset();
   }
 
+  listarEmpresa() {
+    this.conection.listarEmpresa().subscribe(resposta => this.empresas = resposta);
+  }
+
 }
+ 

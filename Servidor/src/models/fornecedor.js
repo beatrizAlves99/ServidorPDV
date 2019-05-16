@@ -8,4 +8,5 @@ const Fornecedor = conSequelize.define('fornecedor',{
         len: [2,255]
     }},
 },{tableName: 'fornecedor'});
+
 module.exports = Fornecedor;

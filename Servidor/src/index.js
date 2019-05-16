@@ -1,18 +1,23 @@
 const express = require('express');
 const status = require('http-status');
+const bodyParser = require('body-parser');
 var cors = require('cors');
 
 const app = express();
 //Controlle e rotas
 app.use(cors());
-app.use(express.json());
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: false}));
 app.use("/", require("./routers/route"));
 app.use("/venda", require("./routers/rotaVenda"));
 app.use("/fornecedor", require("./routers/rotaFornecedor"));
 app.use("/produto",require("./routers/rotaProduto"));
-app.use("/tarefas", require("./routers/rotaTarefa"));
+//app.use("/tarefas", require("./routers/rotaTarefa"));
 app.use("/empresas", require("./routers/rotaEmpresa"));
-app.use("/contatos", require("./routers/rotaContato"));
+//app.use("/contatos", require("./routers/rotaContato"));
+
+const cliente = require("./models/cliente");
+const vendedor = require("./models/vendedor");
 app.use((req,res,next)=>{
     res.status(status.NOT_FOUND).send();
 });

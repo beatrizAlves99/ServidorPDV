@@ -16,4 +16,6 @@ const Produto = conSequelize.define('produto',{
     }},
 },{tableName: 'produto'});
 
+Produto.hasMany(require("./ItemVenda"));
+
 module.exports = Produto;
