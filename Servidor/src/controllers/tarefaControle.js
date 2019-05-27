@@ -1,4 +1,3 @@
-// não finalizado
 
 const Tarefa = require("../models/tarefa");
 const status = require("http-status");
@@ -22,8 +21,8 @@ exports.listarTarefa = (req,res,next)=>{
 
 
 exports.buscarUmTarefa = (req,res,next)=>{
-    let id = parseInt(req.params.id);
-    Tarefa.findById(id).then((tarefa)=>{
+    let id = (req.params.id);
+    Tarefa.findByPk(id).then((tarefa)=>{
         if (tarefa){
             res.status(Status.OK).send(tarefa);
         }else{
@@ -35,8 +34,8 @@ exports.buscarUmTarefa = (req,res,next)=>{
 };
 
 exports.excluirTarefa = (req,res,next) => {
-    let id = parseInt(req.params.id);
-    Tarefa.findById(id).then((tarefa)=>{        
+    let id = (req.params.id);
+    Tarefa.findByPk(id).then((tarefa)=>{        
         if (tarefa){
             Tarefa.destroy({ where: {id : id}}).then(()=>{
                 res.status(Status.OK).send();
@@ -52,12 +51,12 @@ exports.excluirTarefa = (req,res,next) => {
 };
 
 exports.atualizarTarefa = (req,res,next)=>{
-    let id = parseInt(req.params.id);    
+    let id = (req.params.id);    
     let tarefaBody = req.body;    
     if (!tarefaBody || !id){
         res.status(Status.NO_CONTENT).send();
     }else{
-        Tarefa.findById(id).then((tarefa)=>{
+        Tarefa.findByPk(id).then((tarefa)=>{
             if (tarefa){
                 Tarefa.update({nome: tarefaBody.nome, posicao : tarefaBody.posicao, empresa: tarefaBody.empresa,
                 email: tarefaBody.email, telefone: tarefaBody.telefone, categoria: tarefaBody.categoria},{where : {id : id}}).then(()=>{

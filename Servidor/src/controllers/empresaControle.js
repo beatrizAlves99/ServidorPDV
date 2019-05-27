@@ -59,7 +59,7 @@ exports.excluirEmpresa = (req,res,next) => {
 };
 
 exports.atualizarEmpresa = (req,res,next)=>{
-    let id = parseInt(req.params.id);    
+    let id = req.params.id;    
     let empresaBody = req.body;    
     if (!empresaBody || !id){
         res.status(status.NO_CONTENT).send();

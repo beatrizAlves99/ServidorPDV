@@ -21,8 +21,8 @@ exports.listarProduto = (req,res,next)=>{
 
 
 exports.buscarProduto = (req,res,next)=>{
-    let id = parseInt(req.params.id);
-    Produto.findById(id).then((produto)=>{
+    let id = (req.params.id);
+    Produto.findByPk(id).then((produto)=>{
         if (produto){
             res.status(Status.OK).send(produto);
         }else{
@@ -34,8 +34,8 @@ exports.buscarProduto = (req,res,next)=>{
 };
 
 exports.excluirProduto = (req,res,next) => {
-    let id = parseInt(req.params.id);
-    Produto.findById(id).then((produto)=>{        
+    let id = (req.params.id);
+    Produto.findByPk(id).then((produto)=>{        
         if (produto){
             Produto.destroy({ where: {id : id}}).then(()=>{
                 res.status(Status.OK).send();
@@ -51,12 +51,12 @@ exports.excluirProduto = (req,res,next) => {
 };
 
 exports.atualizarProduto = (req,res,next)=>{
-    let id = parseInt(req.params.id);    
+    let id = (req.params.id);    
     let produtoBody = req.body;    
     if (!produtoBody || !id){
         res.status(Status.NO_CONTENT).send();
     }else{
-        Produto.findById(id).then((produto)=>{
+        Produto.findByPk(id).then((produto)=>{
             if (produto){
                 Produto.update({nome: produtoBody.nome, status : produtoBody.status, codigo: produtoBody.codigo, 
                 preco: produtoBody.preco, qtdEstoque: produtoBody.qtdEstoque, categoria: produtoBody.categoria},{where : {id : id}}).then(()=>{

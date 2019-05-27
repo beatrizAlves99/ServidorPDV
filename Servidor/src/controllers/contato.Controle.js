@@ -22,8 +22,8 @@ exports.listarContato = (req,res,next)=>{
 
 
 exports.buscarUmContato = (req,res,next)=>{
-    let id = parseInt(req.params.id);
-    Contato.findById(id).then((contato)=>{
+    let id = req.params.id;
+    Contato.findByPk(id).then((contato)=>{
         if (contato){
             res.status(Status.OK).send(contato);
         }else{
@@ -35,8 +35,8 @@ exports.buscarUmContato = (req,res,next)=>{
 };
 
 exports.excluirContato = (req,res,next) => {
-    let id = parseInt(req.params.id);
-    Contato.findById(id).then((contato)=>{        
+    let id = req.params.id;
+    Contato.findByPk(id).then((contato)=>{        
         if (contato){
             Contato.destroy({ where: {id : id}}).then(()=>{
                 res.status(Status.OK).send();
@@ -52,12 +52,12 @@ exports.excluirContato = (req,res,next) => {
 };
 
 exports.atualizarContato = (req,res,next)=>{
-    let id = parseInt(req.params.id);    
+    let id = req.params.id;    
     let contatoBody = req.body;    
     if (!contatoBody || !id){
         res.status(Status.NO_CONTENT).send();
     }else{
-        Contato.findById(id).then((contato)=>{
+        Contato.findByPk(id).then((contato)=>{
             if (contato){
                 Contato.update({nome: contatoBody.nome, posicao : contatoBody.posicao, empresa: contatoBody.empresa,
                 email: contatoBody.email, telefone: contatoBody.telefone, categoria: contatoBody.categoria},{where : {id : id}}).then(()=>{
